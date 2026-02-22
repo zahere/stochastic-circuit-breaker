@@ -6,10 +6,10 @@ Enums, frozen dataclasses for immutable state, and mutable configuration.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 
 
-class BreakerState(str, Enum):
+class BreakerState(StrEnum):
     """Circuit breaker states.
 
     4-state automaton:
@@ -22,7 +22,7 @@ class BreakerState(str, Enum):
     PROBING = "probing"
 
 
-class TransitionEvent(str, Enum):
+class TransitionEvent(StrEnum):
     """Events that trigger state transitions."""
 
     CLOSED_TO_DEGRADED = "closed_to_degraded"
