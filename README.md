@@ -1,10 +1,8 @@
 # Stochastic Circuit Breaker
 
+[![CI](https://github.com/zahere/stochastic-circuit-breaker/actions/workflows/ci.yml/badge.svg)](https://github.com/zahere/stochastic-circuit-breaker/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: BSD-3](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-66%20passed-brightgreen.svg)]()
-[![Type Checked](https://img.shields.io/badge/type--checked-pyright%20strict-blue.svg)]()
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg)]()
 
 **A statistically optimal circuit breaker for stochastic systems.**
 
@@ -234,19 +232,24 @@ Run the detection speed benchmark:
 python benchmarks/detection_speed.py
 ```
 
-This compares CUSUM vs EMA vs FixedWindow detection delay across degradation severities, matching ARL₀ ≈ 500. CUSUM typically achieves 1.4-2x faster detection for large shifts.
+This compares CUSUM vs EMA vs FixedWindow detection delay across degradation severities, matching ARL₀ ≈ 500. CUSUM achieves 1.4–1.6× faster detection for large shifts (D_KL ≥ 0.25), validated across 24,000 synthetic trials.
 
 ## Installation
 
 ```bash
-pip install stochastic-circuit-breaker
+uv pip install git+https://github.com/zahere/stochastic-circuit-breaker.git
 ```
 
-**Zero dependencies.** Core uses only Python stdlib (`math`, `threading`, `time`, `weakref`). Optional `numpy` for advanced statistics:
+**Zero dependencies.** Core uses only Python stdlib (`math`, `threading`, `time`, `weakref`).
 
-```bash
-pip install stochastic-circuit-breaker[numpy]
-```
+## Origin
+
+This library extracts and generalizes the stochastic change detection subsystem from [AgentiCraft](https://agenticraft.ai), an enterprise platform for production-grade multi-agent systems. The CUSUM-based circuit breaker was developed as part of research into self-healing agent meshes, where deterministic fault detection fails due to the stochastic nature of LLM outputs. The underlying detection algorithms and 4-state FSM design were validated across ~34,000 experiments spanning fault tolerance topologies, supervision scaling, and quality degradation scenarios.
+
+## Author
+
+**Zaher Khateeb** — AI/ML Engineer, Founder of [AgentiCraft](https://agenticraft.ai)
+[linkedin.com/in/zahere](https://linkedin.com/in/zahere)
 
 ## References
 

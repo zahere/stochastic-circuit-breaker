@@ -168,7 +168,7 @@ def main() -> None:
 
     print()
     print("CUSUM advantage = EMA / CUSUM delay (higher = faster)")
-    print("For large shifts, CUSUM typically achieves 1.4-2x advantage.")
+    print("For large shifts (D_KL >= 0.25), CUSUM achieves 1.4-1.6x advantage.")
     print()
 
     # Theoretical ARL comparison
