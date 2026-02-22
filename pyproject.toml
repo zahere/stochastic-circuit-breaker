@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stochastic-circuit-breaker"
+version = "0.1.0"
+description = "A statistically optimal circuit breaker for stochastic systems (LLM agents, AI pipelines)"
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.11"
+authors = [
+    { name = "Zaher Khateeb", email = "zaher@agenticraft.ai" },
+]
+keywords = [
+    "circuit-breaker",
+    "cusum",
+    "change-detection",
+    "llm",
+    "ai-agents",
+    "fault-tolerance",
+    "reliability",
+    "stochastic",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Monitoring",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.24"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.4",
+    "pyright>=1.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/zahere-dev/stochastic-circuit-breaker"
+Repository = "https://github.com/zahere-dev/stochastic-circuit-breaker"
+Issues = "https://github.com/zahere-dev/stochastic-circuit-breaker/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stochastic_circuit_breaker"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "TCH"]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+include = ["src"]
