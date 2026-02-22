@@ -244,12 +244,32 @@ uv pip install git+https://github.com/zahere/stochastic-circuit-breaker.git
 
 ## Origin
 
-This library extracts and generalizes the stochastic change detection subsystem from [AgentiCraft](https://agenticraft.ai), an enterprise platform for production-grade multi-agent systems. The CUSUM-based circuit breaker was developed as part of research into self-healing agent meshes, where deterministic fault detection fails due to the stochastic nature of LLM outputs. The underlying detection algorithms and 4-state FSM design were validated across ~34,000 experiments spanning fault tolerance topologies, supervision scaling, and quality degradation scenarios.
+This library implements the statistical detection layer from
+"When Does Topology Matter? Fault-Dependent Resilience in Multi-Agent
+LLM Systems" (in preparation) — developed during research that grew
+out of production work on [AgentiCraft](https://agenticraft.ai),
+an enterprise multi-agent platform.
+
+The core problem: deterministic circuit breakers (count N failures,
+trip) are fundamentally wrong for stochastic systems. An LLM that
+returns low-quality output 3 times in a row might just be unlucky.
+This library gives you statistically optimal detection that
+distinguishes genuine degradation from normal variance.
+
+A companion library implementing the reliability polynomial framework
+from the same research is available at
+[reliability-polynomials](https://github.com/zahere/reliability-polynomials).
 
 ## Author
 
 **Zaher Khateeb** — AI/ML Engineer, Founder of [AgentiCraft](https://agenticraft.ai)
-[linkedin.com/in/zahere](https://linkedin.com/in/zahere)
+
+Research focus: fault-dependent resilience in multi-agent LLM systems,
+stochastic service mesh architecture, formal verification for
+distributed agent coordination.
+
+[linkedin.com/in/zahere](https://www.linkedin.com/in/zahere/) ·
+[agenticraft.ai](https://agenticraft.ai)
 
 ## References
 
