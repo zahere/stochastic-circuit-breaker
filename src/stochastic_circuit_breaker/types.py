@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
+from typing import Any
 
 
 class BreakerState(StrEnum):
@@ -127,4 +128,4 @@ class DetectorResult:
 
     statistic: float
     alarm: bool
-    metadata: dict[str, object] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=lambda: {})

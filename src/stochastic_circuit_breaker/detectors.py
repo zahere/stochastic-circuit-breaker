@@ -91,7 +91,7 @@ class CUSUMDetector:
             self._llr_success = math.log(mu_1 / mu_0)
             self._llr_failure = math.log((1 - mu_1) / (1 - mu_0))
 
-        self._W: float = 0.0
+        self._w: float = 0.0
         self._n: int = 0
         self._alarm: bool = False
 
@@ -123,26 +123,26 @@ class CUSUMDetector:
         llr = self._compute_llr(x)
         # CUSUM recursion: W_t = max(0, W_{t-1} + log(f_1/f_0))
         # Positive LLR (degradation evidence) increases W_t toward alarm.
-        self._W = max(0.0, self._W + llr)
+        self._w = max(0.0, self._w + llr)
         self._n += 1
-        self._alarm = self._h <= self._W
+        self._alarm = self._h <= self._w
 
         return DetectorResult(
-            statistic=self._W,
+            statistic=self._w,
             alarm=self._alarm,
             metadata={"llr": llr, "n": self._n},
         )
 
     def reset(self) -> None:
         """Reset detector to initial state."""
-        self._W = 0.0
+        self._w = 0.0
         self._n = 0
         self._alarm = False
 
     @property
     def statistic(self) -> float:
         """Current CUSUM statistic W_t."""
-        return self._W
+        return self._w
 
     @property
     def alarm(self) -> bool:
